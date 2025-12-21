@@ -20,7 +20,7 @@ As the semiconductor industry shifts to **2nm (N2)** and **1.8nm (18A)** nodes, 
 
 The semiconductor industry currently relies on perfect, mechanically precise optics ($350M ASML machines). Firefly replaces mechanical precision with algorithmic intelligence. Using a **Physics-Informed U-Net**, it learns to correct for stochastic hardware failures and optical diffraction in real-time.
 
-> 📄 **[Read the Full Technical Whitepaper (Español)](WHITEPAPER.md)**
+> 📄 **Read the Technical Whitepaper:** [English (Main)](WHITEPAPER.md) | [Español](WHITEPAPER_ES.md)
 
 ## 🔬 The Breakthrough: V3 vs V4
 We have successfully evolved from simple intensity recovery to full Inverse Lithography Technology (ILT).
