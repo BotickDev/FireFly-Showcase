@@ -2,7 +2,15 @@
 
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-success) ![Release](https://img.shields.io/badge/Release-v4.2%20(2026)-blue) ![Node](https://img.shields.io/badge/Target-2nm%20%2F%2018A-violet)
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://firefly-demo.streamlit.app)
+> 🔴 **[CLICK HERE TO LAUNCH LIVE KERNEL](https://firefly-demo.streamlit.app)**
+
 > **"Software is the new Lens."**
+
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0-orange)
+![CUDA](https://img.shields.io/badge/Acceleration-CUDA%20%2F%20Metal-green)
+![License](https://img.shields.io/badge/License-Proprietary-red)
 
 ## 🚀 Executive Summary (2026 Roadmap)
 As the semiconductor industry shifts to **2nm (N2)** and **1.8nm (18A)** nodes, the cost of High-NA EUV scanners has surpassed **$500M**. Scaling Moore's Law is no longer a physics problem; it's an economic crisis.
@@ -35,6 +43,17 @@ We have successfully evolved from simple intensity recovery to full Inverse Lith
 * **Stochastic Resilience:** Recovers **99.1%** of logic gate integrity even with **20% emitter failure rates**.
 * **Binary Mask Constraint:** Enforces physically manufacturable outputs (Chrome/Glass compatible).
 * **Edge Computing Ready:** Designed for parallel "Mosaic Inference" on FPGA clusters.
+
+## 🕹️ Live Demo Capabilities
+The [Live Kernel](https://firefly-demo.streamlit.app) allows you to interact with the Firefly V4 engine in real-time.
+
+1.  **Draw Geometry:** Use the `Design_Viewport` to draw Manhattan geometry (Lines/Blocks).
+2.  **Simulate Damage:** Increase `Emitter Failure Rate` to >20% to simulate hardware degradation.
+3.  **Execute ILT:** Click `EXECUTE NEURAL OPC` to run the inference.
+4.  **Observe Physics:**
+    * **Input:** The noisy, damaged signal entering the lens.
+    * **Core:** The AI-reconstructed binary mask (notice the OPC corrections).
+    * **Silicon:** The final printed wafer simulation (physically valid).
 
 ## 📂 Repository Structure (Showcase)
 This repository contains the documentation and results of the Firefly Project.
