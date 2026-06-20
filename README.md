@@ -9,7 +9,8 @@
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://firefly-demo.streamlit.app)
 
 > **[Launch Interactive Demo →](https://firefly-demo.streamlit.app)**  
-> *Hosted on Streamlit Community Cloud — may take ~30 seconds to wake up if inactive.*
+> *Hosted on Streamlit Community Cloud — may take ~30 seconds to wake up if inactive.*  
+> *Demo source: [BotickDev/Firefly-Demo](https://github.com/BotickDev/Firefly-Demo)*
 
 > 📄 **Technical Whitepaper:** [English](WHITEPAPER.md) | [Español](WHITEPAPER_ES.md)
 
@@ -76,6 +77,8 @@ FireFly-Showcase/
 ├── WHITEPAPER_ES.md        # Technical paper (Spanish)
 └── README.md
 ```
+
+The interactive demo (Streamlit app + model weights) lives in [BotickDev/Firefly-Demo](https://github.com/BotickDev/Firefly-Demo).
 
 ---
 
