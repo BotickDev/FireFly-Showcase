@@ -6,6 +6,11 @@
 
 > **"Software is the new Lens."**
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://firefly-demo.streamlit.app)
+
+> **[Launch Interactive Demo →](https://firefly-demo.streamlit.app)**  
+> *Hosted on Streamlit Community Cloud — may take ~30 seconds to wake up if inactive.*
+
 > 📄 **Technical Whitepaper:** [English](WHITEPAPER.md) | [Español](WHITEPAPER_ES.md)
 
 ---
