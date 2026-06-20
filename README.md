@@ -1,66 +1,81 @@
-# Project Firefly V4: The Angstrom-Era Lithography Engine
-
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success) ![Release](https://img.shields.io/badge/Release-v4.2%20(2026)-blue) ![Node](https://img.shields.io/badge/Target-2nm%20%2F%2018A-violet)
-
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://firefly-demo.streamlit.app)
-> 🔴 **[CLICK HERE TO LAUNCH LIVE KERNEL](https://firefly-demo.streamlit.app)**
-
-> **"Software is the new Lens."**
+# Project Firefly V4: Physics-Informed Computational Lithography
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0-orange)
-![CUDA](https://img.shields.io/badge/Acceleration-CUDA%20%2F%20Metal-green)
 ![License](https://img.shields.io/badge/License-Proprietary-red)
 
-## 🚀 Executive Summary (2026 Roadmap)
-As the semiconductor industry shifts to **2nm (N2)** and **1.8nm (18A)** nodes, the cost of High-NA EUV scanners has surpassed **$500M**. Scaling Moore's Law is no longer a physics problem; it's an economic crisis.
+> **"Software is the new Lens."**
 
-**Firefly V4** resolves this by decoupling resolution from mechanical precision. Validated in late 2025, our **Fourier-Neural Engine** allows legacy UV hardware to print Angstrom-class features by correcting stochastic defects and diffraction limits in real-time.
+> 📄 **Technical Whitepaper:** [English](WHITEPAPER.md) | [Español](WHITEPAPER_ES.md)
 
-* **Recovery Rate:** 99.1% on dense logic (FinFET/GAAFET).
-* **Throughput:** 100x faster than traditional ILT (Inverse Lithography Technology).
-* **Hardware Req:** Compatible with standard 193i and low-cost solid-state emitters.
+---
 
-![Firefly V4 Banner](docs/images/firefly_v4_inference_result.png)
+## The Problem: EUV Economics vs. Moore's Law
 
-## ⚡ Overview
-**Firefly** is a next-generation Computational Lithography engine that uses deep learning to enable sub-3nm semiconductor manufacturing on imperfect hardware.
+As the semiconductor industry moves toward **2nm (N2)** and **1.8Å (18A)** nodes, the cost of High-NA EUV scanners has exceeded **$500M per unit**. Scaling Moore's Law is no longer purely a physics problem — it is an economic one.
 
-The semiconductor industry currently relies on perfect, mechanically precise optics ($350M ASML machines). Firefly replaces mechanical precision with algorithmic intelligence. Using a **Physics-Informed U-Net**, it learns to correct for stochastic hardware failures and optical diffraction in real-time.
+The central question Firefly explores: *can algorithmic correction on low-cost UV hardware substitute for mechanical precision that is priced out of reach for most fabs?*
 
-> 📄 **Read the Technical Whitepaper:** [English (Main)](WHITEPAPER.md) | [Español](WHITEPAPER_ES.md)
+---
 
-## 🔬 The Breakthrough: V3 vs V4
-We have successfully evolved from simple intensity recovery to full Inverse Lithography Technology (ILT).
+## Approach
+
+Firefly is a research project exploring **physics-informed deep learning for computational lithography**. It uses a **U-Net architecture** conditioned on a differentiable **Hopkins Diffraction model** (via FFT) to learn optical proximity correction (OPC) directly from simulated exposure data.
+
+The key architectural choices:
+
+- **Differentiable Fourier Optics:** The aerial image simulation is embedded inside the training loop, letting the network learn corrections that are physically grounded rather than purely data-driven.
+- **Binary Mask Constraint:** Outputs are constrained to manufacturable chrome/glass masks (0/1), not continuous grayscale predictions.
+- **Stochastic Emitter Model:** Training includes randomized emitter failure to force the network to generalize across degraded hardware conditions.
+
+This is a **personal research project** — not a product or a deployed system. Results presented here are from controlled simulations on synthetic datasets. All claims should be read in that context.
+
+---
+
+## V3 → V4: From Intensity Recovery to ILT
 
 ![Comparison V3 vs V4](docs/images/comparison_v3_vs_v4.png)
 
-* **V3 (Top):** Learned to bridge gaps (yellow intensity) but produced grayscale outputs not suitable for chrome masks.
-* **V4 (Bottom):** Implements **Fourier Optics** and **Binary Constraints**. The AI now generates manufacturing-ready binary masks (0/1) and automatically adds **OPC features** (serifs/dog-ears) to corners to compensate for light diffraction.
+The core evolution between versions:
 
-## ✨ Key Features
-* **Fourier Optics Simulation:** Implements a differentiable **Hopkins Diffraction Model** using FFT.
-* **Stochastic Resilience:** Recovers **99.1%** of logic gate integrity even with **20% emitter failure rates**.
-* **Binary Mask Constraint:** Enforces physically manufacturable outputs (Chrome/Glass compatible).
-* **Edge Computing Ready:** Designed for parallel "Mosaic Inference" on FPGA clusters.
+- **V3 (top):** The network learned to bridge broken intensity regions (visible as yellow fill), but outputs were grayscale — not suitable for direct mask fabrication.
+- **V4 (bottom):** Added the Hopkins diffraction layer and binary constraint. The network now produces binary masks and learns to place **OPC assist features** (serifs, dog-ears) at corners to pre-compensate for diffraction rounding.
 
-## 🕹️ Live Demo Capabilities
-The [Live Kernel](https://firefly-demo.streamlit.app) allows you to interact with the Firefly V4 engine in real-time.
+![Firefly V4 Inference Result](docs/images/firefly_v4_inference_result.png)
 
-1.  **Draw Geometry:** Use the `Design_Viewport` to draw Manhattan geometry (Lines/Blocks).
-2.  **Simulate Damage:** Increase `Emitter Failure Rate` to >20% to simulate hardware degradation.
-3.  **Execute ILT:** Click `EXECUTE NEURAL OPC` to run the inference.
-4.  **Observe Physics:**
-    * **Input:** The noisy, damaged signal entering the lens.
-    * **Core:** The AI-reconstructed binary mask (notice the OPC corrections).
-    * **Silicon:** The final printed wafer simulation (physically valid).
+---
 
-## 📂 Repository Structure (Showcase)
-This repository contains the documentation and results of the Firefly Project.
+## Technical Details
+
+| Component | Implementation |
+|---|---|
+| Backbone | Physics-Informed U-Net |
+| Optical model | Hopkins partial coherence (FFT-based, differentiable) |
+| OPC features | Learned — serifs and dog-ears emerge from training, not rule-based |
+| Hardware target | 193nm immersion / low-cost solid-state UV emitters |
+| Output | Binary chrome mask (manufacturable format) |
+
+For the full derivation of the optical model, loss function, and training setup, see the [whitepaper](WHITEPAPER.md).
+
+---
+
+## Repository Contents
+
+This is a **showcase repository** — it contains results and documentation only. No training code or model weights are published here.
 
 ```text
-FireFly/
+FireFly-Showcase/
 ├── docs/
-│   └── images/             # High-resolution results and physics tests
-├── WHITEPAPER.md           # Full Scientific Paper (Spanish)
-└── README.md               # Project Overview
+│   └── images/             # Inference results and physics validation plots
+├── WHITEPAPER.md           # Technical paper (English)
+├── WHITEPAPER_ES.md        # Technical paper (Spanish)
+└── README.md
+```
+
+---
+
+## Status
+
+This project is under active personal development. The results shown represent simulation experiments conducted through 2025. No external validation against real silicon has been performed.
+
+Feedback from engineers in EDA, computational lithography, or optical simulation is welcome — open an issue or reach out directly.
